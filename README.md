@@ -1,5 +1,16 @@
 # Cross-Platform Nix Infrastructure
 
+* [Key Features](#%E2%9C%A8-key-features)
+* [Goals](#%F0%9F%8E%AF-goals)
+* [Intended Audience](#%F0%9F%A7%A0-intended-audience)
+* [Repository Structure](#%F0%9F%93%81-repository-structure)
+  + [❄️`flake.nix` & `flake.lock`](#%E2%9D%84%EF%B8%8F--flakenix--flakelock)
+  + [`hosts/` - Machine-Level Configuration](#%F0%9F%96%A5%EF%B8%8F-hosts---machine-level-configuration)
+    - [Purpose](#purpose)
+    - [Why this exists](#why-this-exists)
+    - [What belongs here](#what-belongs-here)
+    - [What does not belong here](#what-does-not-belong-here)%
+
 This repository contains a unified Nix-based configuration for provisioning and managing systems across Linux (NixOS), macOS (`nix-darwin`), and FreeBSD from a single source of truth.
 
 It uses Nix flakes to define reproducible system configurations, shared packages, and user environments while allowing platform-specific customization where required.
