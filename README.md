@@ -37,3 +37,27 @@ It uses Nix flakes to define reproducible system configurations, shared packages
     * `nix develop` for reproducible dev shells
     * `nix build` and `nix run` for tooling
     * Easy pinning and upgrading of dependencies
+
+## Repository Structure
+
+```
+.
+├── flake.nix
+├── flake.lock
+├── hosts/
+│   ├── linux/
+│   │   └── workstation.nix
+│   ├── darwin/
+│   │   └── macbook.nix
+│   └── freebsd/
+│       └── server.nix
+├── modules/
+│   ├── common/
+│   ├── nixos/
+│   ├── darwin/
+│   └── freebsd/
+├── home/
+│   └── user.nix
+└── lib/
+
+```
