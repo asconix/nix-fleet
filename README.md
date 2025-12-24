@@ -100,7 +100,7 @@ Keeping all platforms in a single flake ensures:
 * One upgrade path
 * No drift between systems
 
-*** 🖥️ `hosts/` - Machine-Level Configuration
+### 🖥️ `hosts/` - Machine-Level Configuration
 
 ```
 hosts/
