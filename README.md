@@ -183,3 +183,46 @@ Cross-platform modules that apply everywhere:
 * Nix configuration (GC, substituters, flakes)
 
 These modules are intentionally conservative—only things that actually work everywhere go here.
+
+##### `modules/nixos/`
+
+Linux-only modules:
+
+* systemd services
+* Kernel and boot configuration
+* NixOS-specific networking, users, and security
+
+##### `modules/darwin/`
+
+macOS-specific system configuration via nix-darwin.
+
+This is where Homebrew lives.
+
+Typical contents:
+
+* Homebrew taps, formulae, and casks
+* macOS defaults (`defaults write`)
+* Launchd services
+* macOS-specific package gaps not covered by Nix
+
+📍 Why Homebrew is here
+
+* Homebrew is a system-level macOS concern
+* It complements `nix-darwin`, not Home Manager
+* Some macOS software must be installed via Homebrew
+
+Keeping Homebrew in `modules/darwin/`:
+
+* Avoids leaking macOS concepts into Linux/FreeBSD
+* Keeps system provisioning concerns together
+
+##### `modules/freebsd/`
+
+FreeBSD-specific modules:
+
+* `rc.d` services
+* `sysctl` configuration
+* Jail or network setup (if applicable)
+* Nix bootstrap assumptions
+
+FreeBSD differs significantly from Linux and macOS, so isolation here prevents accidental cross-platform breakage.
