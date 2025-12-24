@@ -96,11 +96,11 @@ Each directory has a single, clear responsibility, which keeps the flake composa
 
 Keeping all platforms in a single flake ensures:
 
-    * Shared versions of `nixpkgs`
-    * One upgrade path
-    * No drift between systems
+* Shared versions of `nixpkgs`
+* One upgrade path
+* No drift between systems
 
-🖥️ `hosts/` - Machine-Level Configuration
+*** 🖥️ `hosts/` - Machine-Level Configuration
 
 ```
 hosts/
