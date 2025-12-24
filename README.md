@@ -167,13 +167,9 @@ modules/
 └── freebsd/
 ```
 
-#### Purpose
-
 `modules/` contains reusable building blocks that can be shared across hosts.
 
----
-
-##### `modules/common/`
+#### `modules/common/`
 
 Cross-platform modules that apply everywhere:
 
@@ -184,9 +180,7 @@ Cross-platform modules that apply everywhere:
 
 These modules are intentionally conservative—only things that actually work everywhere go here.
 
----
-
-##### `modules/nixos/`
+#### `modules/nixos/`
 
 Linux-only modules:
 
@@ -194,9 +188,7 @@ Linux-only modules:
 * Kernel and boot configuration
 * NixOS-specific networking, users, and security
 
----
-
-##### `modules/darwin/`
+#### `modules/darwin/`
 
 macOS-specific system configuration via nix-darwin.
 
@@ -220,9 +212,7 @@ Keeping Homebrew in `modules/darwin/`:
 * Avoids leaking macOS concepts into Linux/FreeBSD
 * Keeps system provisioning concerns together
 
----
-
-##### `modules/freebsd/`
+#### `modules/freebsd/`
 
 FreeBSD-specific modules:
 
