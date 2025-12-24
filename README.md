@@ -38,6 +38,19 @@ It uses Nix flakes to define reproducible system configurations, shared packages
     * `nix build` and `nix run` for tooling
     * Easy pinning and upgrading of dependencies
 
+## 🎯 Goals
+
+* Provide a consistent developer and user experience across platforms
+* Reduce configuration drift between systems
+* Make onboarding of new machines fast and predictable
+* Serve as a foundation for both personal setups and small fleets
+
+## 🧠 Intended Audience
+
+* Nix users managing multiple operating systems
+* Developers who want reproducible environments across laptops and servers
+* Anyone experimenting with Nix beyond Linux
+
 ## 📁 Repository Structure
 
 ```
@@ -48,8 +61,6 @@ It uses Nix flakes to define reproducible system configurations, shared packages
 │   ├── linux/
 │   │   └── workstation.nix
 │   ├── darwin/
-│   │   └── macbook.nix
-│   └── freebsd/
 │       └── server.nix
 ├── modules/
 │   ├── common/
@@ -62,15 +73,3 @@ It uses Nix flakes to define reproducible system configurations, shared packages
 
 ```
 
-🎯 Goals
-
-* Provide a consistent developer and user experience across platforms
-* Reduce configuration drift between systems
-* Make onboarding of new machines fast and predictable
-* Serve as a foundation for both personal setups and small fleets
-
-🧠 Intended Audience
-
-* Nix users managing multiple operating systems
-* Developers who want reproducible environments across laptops and servers
-* Anyone experimenting with Nix beyond Linux
