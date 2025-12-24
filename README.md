@@ -1,6 +1,6 @@
 # Cross-Platform Nix Infrastructure
 
-This repository contains a unified Nix-based configuration for provisioning and managing systems across Linux (NixOS), macOS (nix-darwin), and FreeBSD from a single source of truth.
+This repository contains a unified Nix-based configuration for provisioning and managing systems across Linux (NixOS), macOS (`nix-darwin`), and FreeBSD from a single source of truth.
 
 It uses Nix flakes to define reproducible system configurations, shared packages, and user environments while allowing platform-specific customization where required.
 
@@ -53,6 +53,8 @@ It uses Nix flakes to define reproducible system configurations, shared packages
 
 ## 📁 Repository Structure
 
+This repository is structured to balance code reuse, platform isolation, and long-term maintainability. The core idea is to separate "what is shared" from "what is platform-specific", and separate "system" from "user".
+
 ```
 .
 ├── flake.nix
@@ -61,7 +63,9 @@ It uses Nix flakes to define reproducible system configurations, shared packages
 │   ├── linux/
 │   │   └── workstation.nix
 │   ├── darwin/
-│       └── server.nix
+│   |   └── server.nix
+    └── freebsd/
+        └── server.nix
 ├── modules/
 │   ├── common/
 │   ├── nixos/
@@ -73,3 +77,51 @@ It uses Nix flakes to define reproducible system configurations, shared packages
 
 ```
 
+Each directory has a single, clear responsibility, which keeps the flake composable and avoids tightly coupling platforms that behave very differently (NixOS vs macOS vs FreeBSD).
+
+### ❄️  `flake.nix` & `flake.lock`
+
+* `flake.nix` defines:
+
+    * Inputs (`nixpkgs`, `nix-darwin`, `home-manager`, etc.)
+
+    * Outputs for:
+
+        * NixOS systems
+        * `nix-darwin` systems
+        * FreeBSD configurations
+        * Home Manager profiles
+
+* `flake.lock` pins all dependencies to guarantee reproducibility across machines.
+
+Keeping all platforms in a single flake ensures:
+
+    * Shared versions of `nixpkgs`
+    * One upgrade path
+    * No drift between systems
+
+🖥️ `hosts/` - Machine-Level Configuration
+
+```
+hosts/
+├── linux/
+│   └── workstation.nix
+├── darwin/
+│   └── macbook.nix
+└── freebsd/
+    └── server.nix
+
+```
+
+#### Purpose
+
+The `hosts/` directory defines individual machines.
+
+Each file:
+
+* Represents one host
+* Wires together:
+
+    * Platform-specific system modules
+    * Common modules
+    * Hardware- or role-specific settings
