@@ -184,6 +184,8 @@ Cross-platform modules that apply everywhere:
 
 These modules are intentionally conservative—only things that actually work everywhere go here.
 
+---
+
 ##### `modules/nixos/`
 
 Linux-only modules:
@@ -191,6 +193,8 @@ Linux-only modules:
 * systemd services
 * Kernel and boot configuration
 * NixOS-specific networking, users, and security
+
+---
 
 ##### `modules/darwin/`
 
@@ -215,6 +219,8 @@ Keeping Homebrew in `modules/darwin/`:
 
 * Avoids leaking macOS concepts into Linux/FreeBSD
 * Keeps system provisioning concerns together
+
+---
 
 ##### `modules/freebsd/`
 
