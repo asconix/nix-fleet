@@ -125,3 +125,24 @@ Each file:
     * Platform-specific system modules
     * Common modules
     * Hardware- or role-specific settings
+
+#### Why this exists
+
+* Makes it trivial to add a new machine
+* Avoids giant, monolithic configs
+* Mirrors how NixOS and `nix-darwin` think about systems
+
+#### What belongs here
+
+* Hostnames
+* Hardware details
+* Filesystem layout
+* System services
+* Which users exist on that machine
+
+#### What does not belong here
+
+* Reusable logic
+* Shared packages
+* User dotfiles
+
