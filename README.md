@@ -169,9 +169,9 @@ modules/
 
 #### Purpose
 
-##### `modules/`
+`modules/` contains reusable building blocks that can be shared across hosts.
 
-Contains reusable building blocks that can be shared across hosts.
+---
 
 ##### `modules/common/`
 
