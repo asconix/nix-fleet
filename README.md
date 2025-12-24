@@ -4,7 +4,7 @@ This repository contains a unified Nix-based configuration for provisioning and 
 
 It uses Nix flakes to define reproducible system configurations, shared packages, and user environments while allowing platform-specific customization where required.
 
-## Key Features
+## ✨ Key Features
 
 * Single flake, multiple platforms
 
@@ -38,7 +38,7 @@ It uses Nix flakes to define reproducible system configurations, shared packages
     * `nix build` and `nix run` for tooling
     * Easy pinning and upgrading of dependencies
 
-## Repository Structure
+## 📁 Repository Structure
 
 ```
 .
