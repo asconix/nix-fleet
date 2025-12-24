@@ -169,17 +169,17 @@ modules/
 
 #### Purpose
 
-`modules/`
+##### `modules/`
 
-: contains reusable building blocks that can be shared across hosts.
+Contains reusable building blocks that can be shared across hosts.
 
-`modules/common/`
+##### `modules/common/`
 
-: Cross-platform modules that apply everywhere:
+Cross-platform modules that apply everywhere:
 
-  * Locale & time settings
-  * Shell defaults
-  * Shared packages
-  * Nix configuration (GC, substituters, flakes)
+* Locale & time settings
+* Shell defaults
+* Shared packages
+* Nix configuration (GC, substituters, flakes)
 
-  These modules are intentionally conservative—only things that actually work everywhere go here.
+These modules are intentionally conservative—only things that actually work everywhere go here.
