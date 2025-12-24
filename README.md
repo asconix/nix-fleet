@@ -222,3 +222,56 @@ FreeBSD-specific modules:
 * Nix bootstrap assumptions
 
 FreeBSD differs significantly from Linux and macOS, so isolation here prevents accidental cross-platform breakage.
+
+### 🏠 `home/` — User Environments (Home Manager)
+
+```
+home/
+├── profiles/
+│   ├── dev.nix
+│   └── minimal.nix
+├── modules/
+│   ├── shell.nix
+│   ├── git.nix
+│   └── editor.nix
+└── users/
+    └── alice.nix
+```
+
+The `home/` directory contains everything managed by Home Manager.
+
+* This is the user layer, separate from the OS.
+
+Why this is separate from `modules/`
+
+* Home Manager is about users, not systems
+* Users may exist on multiple machines
+* The same user config should work across platforms
+
+#### `home/modules/`
+
+Reusable Home Manager modules:
+
+* Shell config (`zsh`, `bash`, `fish`)
+* Git configuration
+* Editor setup (Neovim, VS Code)
+* Prompt, aliases, and tools
+
+These modules are:
+
+* Cross-platform where possible
+* Conditioned on OS when necessary
+
+#### `home/users/`
+
+User-specific entry points:
+
+* Select which Home Manager modules apply
+* Enable per-user preferences
+* Tie profiles to a username
+
+This allows:
+
+* Multiple users per system
+* One user across many systems
+
