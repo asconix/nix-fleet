@@ -28,7 +28,7 @@ It uses Nix flakes to define reproducible system configurations, shared packages
     * Operating system configuration, services, and packages defined in Nix
     * Fully reproducible builds across machines
 
-* hared modules & code reuse
+* Shared modules & code reuse
 
     * Common modules for:
   
@@ -62,7 +62,7 @@ It uses Nix flakes to define reproducible system configurations, shared packages
 * Developers who want reproducible environments across laptops and servers
 * Anyone experimenting with Nix beyond Linux
 
-## 📁 Repository Structure
+## 📁 Directory Structure & Design Rationale
 
 This repository is structured to balance code reuse, platform isolation, and long-term maintainability. The core idea is to separate "what is shared" from "what is platform-specific", and separate "system" from "user".
 
@@ -74,9 +74,9 @@ This repository is structured to balance code reuse, platform isolation, and lon
 │   ├── linux/
 │   │   └── workstation.nix
 │   ├── darwin/
-│   |   └── server.nix
-    └── freebsd/
-        └── server.nix
+│   │   └── server.nix
+│   └── freebsd/
+│        └── server.nix
 ├── modules/
 │   ├── common/
 │   ├── nixos/
@@ -157,3 +157,27 @@ Each file:
 * Shared packages
 * User dotfiles
 
+### 🧩 `modules/` - Reusable System Modules
+
+```
+modules/
+├── common/
+├── nixos/
+├── darwin/
+└── freebsd/
+```
+
+#### Purpose
+
+1. `modules/` contains reusable building blocks that can be shared across hosts.
+
+2. `modules/common/`
+
+Cross-platform modules that apply everywhere:
+
+* Locale & time settings
+* Shell defaults
+* Shared packages
+* Nix configuration (GC, substituters, flakes)
+
+These modules are intentionally conservative—only things that actually work everywhere go here.
