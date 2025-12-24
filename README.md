@@ -1,4 +1,4 @@
-# Cross-Platform Nix Infrastructure
+# Unified Nix-based provisioning for Linux, macOS, and FreeBSD
 
 This repository contains a unified Nix-based configuration for provisioning and managing systems across Linux (NixOS), macOS (`nix-darwin`), and FreeBSD from a single source of truth.
 
@@ -190,7 +190,7 @@ Linux-only modules:
 
 #### `modules/darwin/`
 
-macOS-specific system configuration via nix-darwin.
+macOS-specific system configuration via `nix-darwin`.
 
 This is where Homebrew lives.
 
@@ -211,6 +211,18 @@ Keeping Homebrew in `modules/darwin/`:
 
 * Avoids leaking macOS concepts into Linux/FreeBSD
 * Keeps system provisioning concerns together
+
+Homebrew components:
+
+* Component: Homebrew, location: `/modules/darwin`, purpose: system-level macOS concern
+* Component: casks, location: `/modules/darwin`, purpose: GUI apps & macOS integration
+* Component: brew taps, location: `/modules/darwin`, purpose: host provisioning
+
+Homebrew is not in `home/` because:
+
+* It installs system-wide software
+* It requires elevated privileges
+* It is macOS-only
 
 #### `modules/freebsd/`
 
@@ -274,4 +286,46 @@ This allows:
 
 * Multiple users per system
 * One user across many systems
+
+### 🏗️ `pkgs/` - Custom Packages (Optional)
+
+```
+pkgs/
+├── mytool.nix
+└── default.nix
+```
+
+Used for:
+
+* Custom derivations
+* Overlays
+* Local patches
+
+This keeps custom packages out of `modules/`, avoiding tight coupling between package definitions and system logic.
+
+### 📚 `lib/` - Shared Helpers
+
+```
+lib/
+├── mkHost.nix
+└── mkHome.nix
+```
+
+Common helper functions:
+
+* Reduce boilerplate in `flake.nix`
+* Normalize host and home definitions
+* Encapsulate platform detection logic
+
+This keeps `flake.nix` readable and declarative.
+
+### 🧭 Design Philosophy Recap
+
+This repository and its structure follow the following logical foundation:
+
+* `hosts/` → What machine is this?
+* `modules/` → What does the OS do?
+* `home/` → How does the user work?
+* `pkgs/` → What software do we build?
+* `lib/` → How do we glue it together?
 
