@@ -329,3 +329,64 @@ This repository and its structure follow the following logical foundation:
 * `pkgs/` → What software do we build?
 * `lib/` → How do we glue it together?
 
+## Prerequisites
+
+To evaluate the Nix expressions in this repository and provision the devices, the target systems require some base install, e.g. Nix itself.
+
+### macOS
+
+To install Nix on macOS we use the Nix installer from Determine Systems. Since we want to install vanilla Nix binaries from NixOS instead of the Determinate's patched/fallback Nix build we execute the following command:
+  
+```
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install --prefer-upstream-nix
+```
+
+```
+info: downloading installer
+ INFO nix-installer v3.15.0
+`nix-installer` needs to run as `root`, attempting to escalate now via `sudo`...
+Password:
+ INFO nix-installer v3.15.0
+ INFO For a more robust Nix installation, use the Determinate package for macOS: https://dtr.mn/determinate-nix
+Nix install plan (v3.15.0)
+Planner: macos
+
+Configured settings:
+* prefer_upstream: true
+
+Planned actions:
+* Create an encrypted APFS volume `Nix Store` for Nix on `disk3` and add it to `/etc/fstab` mounting on `/nix`
+* Fetch `https://releases.nixos.org/nix/nix-2.33.0/nix-2.33.0-aarch64-darwin.tar.xz` to `/nix/temp-install-dir`
+* Create a directory tree in `/nix`
+* Synchronize /nix/var ownership
+* Move the downloaded Nix into `/nix`
+* Synchronize /nix/store ownership
+* Create build users (UID 351-382) and group (GID 350)
+* Configure Time Machine exclusions
+* Setup the default Nix profile
+* Place the Nix configuration in `/etc/nix/nix.conf`
+* Configure the shell profiles
+* Configuring zsh to support using Nix in non-interactive shells
+* Unload, then recreate a `launchctl` plist to put Nix into your PATH
+* Configure upstream Nix daemon service
+* Remove directory `/nix/temp-install-dir`
+
+Proceed? ([Y]es/[n]o/[e]xplain):
+```
+
+We answer with `Yes`, so the Determinate installer can finish the Nix installation:
+
+```
+ INFO Step: Create an encrypted APFS volume `Nix Store` for Nix on `disk3` and add it to `/etc/fstab` mounting on `/nix`
+ INFO Step: Provision Nix
+ INFO Step: Create build users (UID 351-382) and group (GID 350)
+ INFO Step: Configure Time Machine exclusions
+ INFO Step: Configure Nix
+ INFO Step: Configuring zsh to support using Nix in non-interactive shells
+ INFO Step: Unload, then recreate a `launchctl` plist to put Nix into your PATH
+ INFO Step: Configure upstream Nix daemon service
+ INFO Step: Remove directory `/nix/temp-install-dir`
+Nix was installed successfully!
+To get started using Nix, open a new shell or run `. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh`
+```
+
