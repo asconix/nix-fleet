@@ -26,8 +26,8 @@
     # Secret provisioning using SOPS
     sops-nix = {
       url = "github:Mic92/sops-nix";
-      sops-nix.inputs.nixpkgs.follows = "nixpkgs";
-    }
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   # Build derivations
@@ -38,7 +38,7 @@
 
       stateVersion = "25.05";
       libx = import ./lib { inherit inputs outputs stateVersion; };
-      
+
     in {
 
       darwinConfigurations = {
