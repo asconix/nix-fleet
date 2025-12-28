@@ -1,6 +1,6 @@
 { inputs, outputs, stateVersion, ...}:
 {
-  mkDarwin = { hostname, username ? "ctp", system ? "aarch64-darwin" }:
+  mkDarwin = { hostname, username ? "ctp", system ? "aarch64-darwin",}:
   let
     inherit (inputs.nixpkgs) lib;
     unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
