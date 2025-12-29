@@ -53,10 +53,8 @@ in
 
   programs.nix-index.enable = true;
 
-  programs.zsh = {
+  programs.fish = {
     enable = true;
-    enableCompletion = true;
-    promptInit = builtins.readFile ./../../data/mac-dot-zshrc;
   };
 
   homebrew = {
@@ -76,6 +74,7 @@ in
     casks = [
       "claude"
       "chatgpt-atlas"
+      "discord"
       "firefox"
       "font-fira-code"
       "font-fira-code-nerd-font"
@@ -84,7 +83,7 @@ in
       "font-jetbrains-mono-nerd-font"
       "font-meslo-lg-nerd-font"
       "google-chrome"
-      "handbrake"
+      "handbrake-app"
       "hammerspoon"
       "istat-menus"
       "iterm2"
@@ -101,7 +100,6 @@ in
       "Disk Speed Test" = 425264550;
       "Fantastical" = 975937182;
       "Telegram" = 747648890;
-      "Wireguard" = 1451685025;
       "Keynote" = 409183694;
       "Numbers" = 409203825;
       "Pages" = 409201541;
@@ -180,18 +178,20 @@ in
         };
       };
 
-      # Dock
+      # Dock preferences
       "com.apple.dock" = {
-        autohide = false;
-        launchanim = false;
+        autohide = true; # Automatically hide and show the Dock
+        enable-window-tool = true; # Enable Window tool in Mission Control
+        launchanim = false; # Animate opening applications
+        magnification = false; # Magnification
+        mineffect = "scale"; # Minimize effect
+        minimize-to-application = true; # Minimize windows into application icon
+        orientation = "left"; # Orientation of the Dock
+        showhidden = false; # Dim hidden app icons
+        show-process-indicators = true; # Show indicators for open applications
+        show-recents = false; # Show recent items
         static-only = false;
-        show-recents = false;
-        show-process-indicators = true;
-        orientation = "left";
-        tilesize = 36;
-        minimize-to-application = true;
-        mineffect = "scale";
-        enable-window-tool = false;
+        tilesize = 36; # Dock icon size
       };
 
       # Activity Monitor
@@ -203,11 +203,11 @@ in
       };
 
       # Safari
-      "com.apple.Safari" = {
+      #"com.apple.Safari" = {
         # Privacy: don’t send search queries to Apple
-        UniversalSearchEnabled = false;
-        SuppressSearchSuggestions = true;
-      };
+      #  UniversalSearchEnabled = false;
+      #  SuppressSearchSuggestions = true;
+      #};
 
       "com.apple.AdLib" = {
         allowApplePersonalizedAdvertising = false;
