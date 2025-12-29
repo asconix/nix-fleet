@@ -25,6 +25,7 @@ in
   environment.systemPackages = with pkgs; [
     # Stable
     pkgs.just
+    pkgs.meld
     pkgs.nix
     pkgs.nodejs
     pkgs.pass

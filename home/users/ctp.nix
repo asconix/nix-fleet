@@ -5,6 +5,17 @@
   # Home Manager option search
   # https://mipmip.github.io/home-manager-option-search
 
+  # Fish
+  programs.fish = {
+    enable = true;
+    shellAliases = {
+      "ll" = "ls -l";
+    };
+  #  enableCompletion = true;
+  #  autosuggestion.enable = true;
+    #initExtra = (builtins.readFile ../mac-dot-zshrc);
+  };
+
   # Git
   programs.git = {
     enable = true;

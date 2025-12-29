@@ -13,6 +13,7 @@
       modules = [
         ../hosts/common/common-packages.nix
         ../hosts/common/darwin-common.nix
+        ../hosts/common/shell.nix
         customConf
     
         # Add nodejs overlay to fix build issues (https://github.com/NixOS/nixpkgs/issues/402079)
@@ -25,6 +26,7 @@
           ];
         }
 
+        # Home Manager  
         inputs.home-manager.darwinModules.home-manager {
             networking.hostName = hostname;
             home-manager.useGlobalPkgs = true;
@@ -33,6 +35,22 @@
             home-manager.extraSpecialArgs = { inherit inputs; };
             #home-manager.sharedModules = [ inputs.nixvim.homeManagerModules.nixvim ];
             home-manager.users.${username} = { imports = [ ./../home/users/${username}.nix ]; };
+        }
+
+        # Homebrew
+        inputs.nix-homebrew.darwinModules.nix-homebrew {
+          nix-homebrew = {
+            enable = true;
+            enableRosetta = true;
+            autoMigrate = true;
+            mutableTaps = true;
+            user = "${username}";
+            taps = with inputs; {
+              "homebrew/homebrew-core" = homebrew-core;
+              "homebrew/homebrew-cask" = homebrew-cask;
+              "homebrew/homebrew-bundle" = homebrew-bundle;
+            };
+          };
         }
       ];
     };
