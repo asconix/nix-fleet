@@ -12,7 +12,7 @@
     settings = {
       user = {
         email = "c.pilka@asconix.com";
-        name = "Christoph Pilkaa";
+        name = "Christoph Pilka";
       };
       init = {
         defaultBranch = "main";
