@@ -1,10 +1,6 @@
 { pkgs, lib, ... }:
 
 {
-  programs.fish = {
-    enable = true;
-  };
-
-  # Make fish available as a login shell
-  environment.shells = [ pkgs.fish ];
+  # Make Bash available as a login shell
+  environment.shells = [ pkgs.bash ];
 }

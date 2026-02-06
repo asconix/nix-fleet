@@ -3,19 +3,20 @@
   mkDarwin = { hostname, username ? "ctp", system ? "aarch64-darwin",}:
   let
     inherit (inputs.nixpkgs) lib;
-    myLibPath = "../lib";
+    myLibPath = ../lib;
     unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
     customConfPath = ./../hosts/darwin/${hostname};
     customConf = if builtins.pathExists (customConfPath) then (customConfPath + "/default.nix") else ./../hosts/common/darwin-common-dock.nix;
   in
     inputs.nix-darwin.lib.darwinSystem {
-      specialArgs = { inherit system inputs username unstablePkgs; };
+      specialArgs = { inherit system inputs username unstablePkgs myLibPath; };
       #extraSpecialArgs = { inherit inputs; }
       modules = [
         ../hosts/common/common-packages.nix
         ../hosts/common/darwin-common.nix
         ../hosts/common/shell.nix
         ../modules/common/bash/default.nix
+        ../modules/common/emacs/default.nix
         customConf
     
         # Add nodejs overlay to fix build issues (https://github.com/NixOS/nixpkgs/issues/402079)

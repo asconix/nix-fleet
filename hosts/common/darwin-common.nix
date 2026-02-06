@@ -3,7 +3,10 @@ let
   inherit (inputs) nixpkgs nixpkgs-unstable;
 in
 {
-  users.users.ctp.home = "/Users/ctp";
+  users.users.ctp = {
+    home = "/Users/ctp";
+    shell = pkgs.bash;
+  };
 
   nix = {
     settings = {
@@ -61,14 +64,13 @@ in
   homebrew = {
     enable = true;
     onActivation = {
-      cleanup = "zap";
+      cleanup = "zap"; # Uninstall all formulae not listed in the generated Brewfile
       autoUpdate = true;
       upgrade = true;
     };
     global.autoUpdate = true;
 
     brews = [
-      #"bitwarden-cli"
     ];
     taps = [
     ];
@@ -97,13 +99,18 @@ in
 
     # Mac App Store
     masApps = {
+      "Baby Monitor Bibino: Nanny Cam" = 1514427173;
       "Bitwarden" = 1352778147;
       "Disk Speed Test" = 425264550;
+      "HTTPBot: API & HTTP Client" = 1232603544;
       "Fantastical" = 975937182;
-      "Telegram" = 747648890;
       "Keynote" = 409183694;
-      "Numbers" = 409203825;
+      "Night Sky" = 475772902;
+      # "Numbers" = 409203825;
       "Pages" = 409201541;
+      "reMarkable desktop" = 1276493162;
+      "Telegram" = 747648890;
+      "Yubico Authenticator" = 1497506650;
     };
   };
 
@@ -128,8 +135,36 @@ in
     NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
     LaunchServices.LSQuarantine = false; # disables "Are you sure?" for new apps
     loginwindow.GuestEnabled = false;
-    finder.FXPreferredViewStyle = "Nlsv";
+    loginwindow.LoginwindowText = "This device belongs to Christoph Pilka <c.pilka@asconix.com> +47 93961896";
+    finder = {
+      AppleShowAllFiles = true; # Show hidden files
+      AppleShowAllExtensions = true; # Show file extensions
+      CreateDesktop = false; # Hide icons on the desktop
+      FXPreferredViewStyle = "Nlsv"; # Change the default finder view to list view
+      QuitMenuItem = true; # Allow quitting of the Finder
+      ShowPathbar = true; # Show path breadcrumbs in finder windows
+      ShowStatusBar = true; # Show status bar at bottom of finder windows with item/disk space stats
+      _FXShowPosixPathInTitle = true; # Show the full POSIX filepath in the window title
+      _FXSortFoldersFirst = true; # Keep folders on top when sorting by name
+    };
+    menuExtraClock = {
+      FlashDateSeparators = true; # Flash the clock indicator on and off each second
+      IsAnalog = false; # Show digital clock
+      Show24Hour = null; # Show a 24-hour clock, instead of a 12-hour clock
+      ShowAMPM = true;
+    };
   };
+
+  # WALLPAPER="${../bassets/wallpapers/dracula-pro/desktop-2560x1600.png}"
+  system.activationScripts.wallpaper.text = ''
+    WALLPAPER="${/tmp/nix-d-nord.jpg}"
+
+    osascript <<EOF
+    tell application "System Events"
+      set picture of every desktop to POSIX file "$WALLPAPER"
+    end tell
+    EOF
+  '';
 
   system.defaults.CustomUserPreferences = {
       # Finder

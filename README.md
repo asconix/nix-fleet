@@ -390,3 +390,17 @@ Nix was installed successfully!
 To get started using Nix, open a new shell or run `. /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh`
 ```
 
+## Sources of inspiration
+
+This Nix configuration has been inspired by some existing config repos and tutorials. The following list contains the sources that significantly inspired me.
+
+### YouTube
+
+• https://www.youtube.com/watch?v=qUmZtC6ts0M
+
+### Github
+
+• https://github.com/mitchellh/nixos-config 
+• https://github.com/ironicbadger/nix-config
+• https://github.com/wimpysworld/nix-config
+• https://github.com/shayne/nixos-config
