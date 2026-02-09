@@ -18,16 +18,31 @@
         ../modules/common/bash/default.nix
         ../modules/common/emacs/default.nix
         customConf
-    
-        # Add nodejs overlay to fix build issues (https://github.com/NixOS/nixpkgs/issues/402079)
+        # ../pkgs/overlays/default.nix
         {
-          nixpkgs.overlays = [
-            (final: prev: {
-              nodejs = prev.nodejs_22;
-              nodejs-slim = prev.nodejs-slim_22;
-            })
-          ];
+          # nixpkgs.overlays = import ./pkgs/overlays/default.nix { inherit inputs; };
+          nixpkgs.overlays = import ../pkgs/overlays/default.nix { inherit inputs; };
         }
+        #{
+          #nixpkgs.overlays = [
+            # Add nodejs overlay to fix build issues (https://github.com/NixOS/nixpkgs/issues/402079)
+            #(final: prev: {
+            #  nodejs = prev.nodejs_22;
+            #  "nodejs-slim" = prev."nodejs-slim_22";
+            #})
+
+            # Add Emacs community overlay
+            # inputs.emacs-overlay.overlays.default
+            
+            # Your repo-local overlay(s) remain separate
+            #(final: prev: {
+            #  myPkgs = import ./pkgss { pkgs = final; };
+            #})
+        #    (import (builtins.fetchTarball {
+        #      url = "https://github.com/nix-community/emacs-overlay/archive/master.tar.gz";
+        #    }))
+         # ];
+       # }
 
         # Home Manager  
         inputs.home-manager.darwinModules.home-manager {

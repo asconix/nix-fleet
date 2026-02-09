@@ -287,12 +287,17 @@ This allows:
 * Multiple users per system
 * One user across many systems
 
-### 🏗️ `pkgs/` - Custom Packages (Optional)
+### 🏗️ `pkgs/` - Custom Packages
+
+This keeps custom packages out of `modules/`, avoiding tight coupling between package definitions and system logic.
 
 ```
 pkgs/
 ├── mytool.nix
 └── default.nix
+└── overlays/
+    └── default.nix
+    └── emacs.nix
 ```
 
 Used for:
@@ -301,7 +306,9 @@ Used for:
 * Overlays
 * Local patches
 
-This keeps custom packages out of `modules/`, avoiding tight coupling between package definitions and system logic.
+#### `pkgs/overlays` - Overlays
+
+- `pkgs/overlays/default.nix` returns a list of overlays (in the order you want)
 
 ### 📚 `lib/` - Shared Helpers
 

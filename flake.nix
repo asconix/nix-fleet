@@ -29,6 +29,12 @@
       flake = false;
     };
 
+    # Emacs overlay for Nixpkgs
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      flake = false;
+    };
+
     # Manage user environment using Home Manager
     home-manager = {
       url = "github:nix-community/home-manager";
