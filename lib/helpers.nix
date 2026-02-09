@@ -21,7 +21,7 @@
         # ../pkgs/overlays/default.nix
         {
           # nixpkgs.overlays = import ./pkgs/overlays/default.nix { inherit inputs; };
-          nixpkgs.overlays = import ../pkgs/overlays/default.nix { inherit inputs; };
+          nixpkgs.overlays = import ../pkgs/overlays { inherit inputs; };
         }
         #{
           #nixpkgs.overlays = [
