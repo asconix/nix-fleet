@@ -297,7 +297,7 @@ pkgs/
 └── default.nix
 └── overlays/
     └── default.nix
-    └── emacs.nix
+    └── nodejs.nix
 ```
 
 Used for:
@@ -308,7 +308,11 @@ Used for:
 
 #### `pkgs/overlays` - Overlays
 
-- `pkgs/overlays/default.nix` returns a list of overlays (in the order you want)
+Contains all remote and local overlays.
+
+`pkgs/overlays/default.nix` returns a list of overlays (in the order you want), in the first section remote overlays, in the second section local overlays.
+
+All other `pkgs/overlays/*.nix` files contain local overlays.
 
 ### 📚 `lib/` - Shared Helpers
 

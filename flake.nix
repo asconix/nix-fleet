@@ -32,7 +32,13 @@
     # Emacs overlay for Nixpkgs
     emacs-overlay = {
       url = "github:nix-community/emacs-overlay";
-      flake = false;
+      flake = true;
+    };
+
+    # Neovim overlay for Nixpkgs
+    neovim-nightly-overlay = {
+      url = "github:nix-community/neovim-nightly-overlay";
+      flake = true;
     };
 
     # Manage user environment using Home Manager
@@ -64,4 +70,10 @@
         nomnb06 = libx.mkDarwin { hostname = "nomnb06"; };
       };
     };
+
+  # Build dervations
+  #outputs = inputs@{ self, nixpkgs, darwin, home-manager, ... }:
+  #let
+  #  overlaysForAll = import ./pkgs/overlays/default.nix { inherit inputs; };
+  #in
 }
