@@ -100,7 +100,7 @@ in
     # Mac App Store
     masApps = {
       "Baby Monitor Bibino: Nanny Cam" = 1514427173;
-      "Bitwarden" = 1352778147;
+      # "Bitwarden" = 1352778147;
       "Disk Speed Test" = 425264550;
       "HTTPBot: API & HTTP Client" = 1232603544;
       "Fantastical" = 975937182;
