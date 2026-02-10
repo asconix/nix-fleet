@@ -1,5 +1,8 @@
 ;; --- Vanilla init.el managed by Home Manager ---
 
+;; Load bootstrap
+(load (expand-file-name "bootstrap.el" user-emacs-directory) nil 'nomessage)
+
 (setq inhibit-startup-screen t
     make-backup-files nil
     auto-save-default nil

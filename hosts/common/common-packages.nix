@@ -6,11 +6,9 @@ in
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     bitwarden-cli
-    # emacs-git
     git-crypt
     git-lfs
     jq
     just
-    ripgrep
   ];
 }

@@ -1,4 +1,5 @@
 { config, inputs, pkgs, lib, unstablePkgs, ... }:
+
 {
   home.stateVersion = "24.05";
 
@@ -11,14 +12,13 @@
     enableBashIntegration = true;
   };
 
-  # Emacs
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacs;  # replace with pkgs.emacs-gtk, or a version provided by the community overlay if desired.
-    extraConfig = ''
-      (setq standard-indent 2)
-    '';
-  };
+
+
+  # Neovim
+  #programs.neovim = {
+  #  enable = true;
+  #  package = pkgs.neovim-nightly;
+  #};
 
   # Starship
   programs.starship = {
@@ -91,4 +91,9 @@
       };
     };
   };
+
+  imports = [
+    ../modules/base
+    ../modules/emacs
+  ];
 }
