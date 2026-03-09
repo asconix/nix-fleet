@@ -28,6 +28,7 @@ in
   environment.systemPackages = with pkgs; [
     # Stable
     pkgs.just
+    pkgs.mas 
     pkgs.meld
     pkgs.nix
     pkgs.nodejs
@@ -75,6 +76,7 @@ in
     taps = [
     ];
     casks = [
+      "nikitabobko/tap/aerospace"
       "claude"
       "chatgpt-atlas"
       "discord"
@@ -99,18 +101,33 @@ in
 
     # Mac App Store
     masApps = {
-      "Baby Monitor Bibino: Nanny Cam" = 1514427173;
-      # "Bitwarden" = 1352778147;
-      "Disk Speed Test" = 425264550;
-      "HTTPBot: API & HTTP Client" = 1232603544;
-      "Fantastical" = 975937182;
-      "Keynote" = 409183694;
-      "Night Sky" = 475772902;
-      # "Numbers" = 409203825;
-      "Pages" = 409201541;
-      "reMarkable desktop" = 1276493162;
-      "Telegram" = 747648890;
-      "Yubico Authenticator" = 1497506650;
+      #"Amazon Prime Video" = 545519333;
+      ##"Apple Configurator" = 1037126344;
+      #"Authenticator" = 6748213186;
+      #"Baby Monitor Bibino: Nanny Cam" = 1514427173;
+      #"Bitwarden" = 1352778147;
+      #"Blackmagic Disk Speed Test" = 425264550;
+      #"Fantastical - Calendar" = 975937182;
+      #"Fireplace App" = 413965265;
+      #"GarageBand" = 682658836;
+      #"HP: Print and Support" = 1474276998; 
+      #"HTTPBot: API & HTTP Client" = 1232603544;
+      #"iMovie" = 408981434;
+      #"Keynote: Design Presentations" = 409183694;
+      #"Kindle" = 302584613;
+      #"Microsoft Excel" = 462058435;
+      #"Microsoft Outlook" = 985367838;
+      #"Microsoft PowerPoint" = 462062816;
+      #"Microsoft Word" = 462054704;
+      #"Night Sky" = 475772902;
+      #"Numbers: Make Spreadsheets" = 409203825;
+      #"Pages: Create Documents" = 409201541;
+      #"reMarkable desktop" = 1276493162;
+      #"Slack for Desktop" = 803453959;
+      #"Telegram" = 747648890;
+      #"WhatsApp Messenger" = 310633997;
+      #"Xcode" = 497799835;
+      #"Yubico Authenticator" = 1497506650;
     };
   };
 
