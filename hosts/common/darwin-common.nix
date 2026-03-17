@@ -76,7 +76,6 @@ in
     taps = [
     ];
     casks = [
-      "nikitabobko/tap/aerospace"
       "claude"
       "chatgpt-atlas"
       "discord"

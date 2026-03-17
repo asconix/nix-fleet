@@ -1,6 +1,27 @@
 #+title: Emacs config
 #+property: header-args:emacs-lisp :tangle config.el
 
+* Lexical binding
+#+begin_src emacs-lisp
+;; -*- lexical-binding: t -*-
+#+end_src
+
+* Basic configuration
+#+begin_src emacs-lisp
+;; Include MELPA as package repository
+(require 'package)
+
+(setq package-archives
+      '(("gnu" . "https://elpa.gnu.org/packages/")
+        ("melpa" . "https://melpa.org/packages/")
+        ("org" . "https://orgmode.org/elpa/")))
+
+(setq package-enable-at-startup nil)
+
+(unless package--initialized
+  (package-initialize))
+#+end_src
+
 * Core
 #+begin_src emacs-lisp
 (setq inhibit-startup-screen t

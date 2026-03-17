@@ -1,32 +1,44 @@
 { pkgs, lib, config, ... }:
 
+let
+  emacs = pkgs.emacs-git;
+  emacsBin = "${emacs}/bin/emacs";
+  emacsDir = "${config.home.homeDirectory}/.emacs.d";
+in
 {
   programs.emacs = {
     enable = true;
+    package = emacs;
   };
 
-  # home.file.".emacs.d/init.el".source = ./init.el;
   # Install the literate config
   home.file.".emacs.d/init.org".source = ./init.org;
-  
-  # Bootstrap init.el (small + stable)
+
+  # Bootstrap init.el just loads config.el (no tangling at startup)  
   home.file.".emacs.d/init.el".text = ''
-    ;; Bootstrap literate config
-    (require 'org)
-
-    (let ((org-file (expand-file-name "init.org" user-emacs-directory))
-          (el-file  (expand-file-name "init.el" user-emacs-directory)))
-      ;; Only tangle when org is newer than el
-      (when (file-newer-than-file-p org-file el-file)
-        (require 'ob-tangle)
-        (org-babel-tangle-file org-file el-file "emacs-lisp")))
-
-    ;; Load the tangled config (this file will be overwritten by tangle)
-    ;; So we load the *tangled output* from a different name to avoid
-    ;; clobbering the bootstrap.
+    ;; -*- lexical-binding: t -*-
     (load (expand-file-name "config.el" user-emacs-directory) nil 'nomessage)
   '';
 
-  # IMPORTANT: tangle to config.el so bootstrap init.el stays intact
-  home.file.".emacs.d/config.el".text = ""; # Placeholder, will be overwritten
+  # Tangle init.org -> config.el during activation
+  home.activation.tangleEmacsConfig = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    mkdir -p "${emacsDir}"
+    ${emacsBin} --batch \
+      --eval "(require 'org)" \
+      --eval "(require 'ob-tangle)" \
+      --eval "(org-babel-tangle-file \"${emacsDir}/init.org\" \"${emacsDir}/config.el\" \"emacs-lisp\")"
+  '';
+
+  # Start Emacs daemon at login (launchd, user-level)
+  launchd.agents.emacs = {
+    enable = true;
+    config = {
+      Label = "org.nix-community.emacs";
+      ProgramArguments = [ "${emacs}/bin/emacs" "--fg-daemon" ];
+      RunAtLoad = true;
+      KeepAlive = true;
+      StandardOutPath = "/tmp/emacs-daemon.out";
+      StandardErrorPath = "/tmp/emacs-daemon.err";
+    };
+  };
 }
