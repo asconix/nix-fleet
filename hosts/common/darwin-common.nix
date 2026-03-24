@@ -72,8 +72,10 @@ in
     global.autoUpdate = true;
 
     brews = [
+      "sketchybar"
     ];
     taps = [
+      "felixkratz/formulae"
     ];
     casks = [
       "claude"
@@ -91,6 +93,7 @@ in
       "hammerspoon"
       "istat-menus"
       "iterm2"
+      "qbittorrent"
       "signal"
       "slack"
       "spotify"

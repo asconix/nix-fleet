@@ -171,21 +171,32 @@
       ];
 
       userSettings = {
-        # This property will be used to generate settings.json:
+        # This property will be used to prevent generating settings.json:
         # https://code.visualstudio.com/docs/getstarted/settings#_settingsjson
-        "editor.formatOnSave" = true;
+        "editor.formatOnSave" = false;
+        # Allow VS Code to use the system's trusted SSL certificates
+        "http.systemCertificatesNode" = true;
       };
 
-      extensions = with pkgs.vscode-extensions; [
-        jnoortheen.nix-ide
-        dracula-theme.theme-dracula
-      ];
+      extensions = 
+        (with pkgs.vscode-extensions; [
+          aaron-bond.better-comments
+          eamodio.gitlens
+          esbenp.prettier-vscode
+          johnpapa.vscode-peacock
+          pkief.material-icon-theme
+          ritwickdey.liveserver
+        ])
+        ++
+        (with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
+          elixir-lsp.elixir-ls
+          jnoortheen.nix-ide
+          dracula-theme.theme-dracula
+          google.geminicodeassist
+          openai.chatgpt
+          #Google.gemini-cli-vscode-ide-companion
+        ]);
     };
-
-    #extensions = [
-    #  nixpkgs.vscode-marketplace.jnoortheen.nix-ide
-    #  nixpkgs.vscode-marketplace.dracula-theme.theme-dracula
-    #];
   };
 
   imports = [

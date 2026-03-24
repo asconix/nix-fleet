@@ -52,6 +52,7 @@
     };
 
     # Visual Studio Code extensions
+    # https://github.com/nix-community/nix-vscode-extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
     };
