@@ -3,5 +3,4 @@ programs.sketchybar = {
     home.file.".config/sketchybar/config" = {
         source = ./sketchybar.conf;
     };
-  };
 };
