@@ -7,7 +7,22 @@
       "set -g SHELL ${pkgs.fish}/bin/fish"
     ]);
 
-    # inherit (libx) shellAliases;
+    shellAliases = {
+      c = "clear";
+      ls = "ls --color=always";
+      l = "ls";
+      ll = "ls -Fl";
+      la = "ll -a";
+      "cd.." = "cd ..";
+      ".." = "cd ..";
+      "..." = "cd ../..";
+      "...." = "cd ../../..";
+      "....." = "cd ../../../..";
+      grep = "grep --color=auto";
+      gs = "git status";
+      weather = "curl wttr.in";
+      pubip = "curl icanhazip.com";
+    };
 
     plugins = map
       (n: {

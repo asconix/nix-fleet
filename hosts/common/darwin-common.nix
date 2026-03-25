@@ -5,7 +5,7 @@ in
 {
   users.users.ctp = {
     home = "/Users/ctp";
-    shell = pkgs.bash;
+    shell = pkgs.fish;
   };
 
   nix = {
@@ -30,6 +30,7 @@ in
     pkgs.just
     pkgs.mas 
     pkgs.meld
+    pkgs.mise
     pkgs.nix
     pkgs.nodejs
     pkgs.pass
@@ -93,7 +94,6 @@ in
       "handbrake-app"
       "hammerspoon"
       "istat-menus"
-      "iterm2"
       "qbittorrent"
       "signal"
       "slack"

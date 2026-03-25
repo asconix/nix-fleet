@@ -41,6 +41,26 @@
       #               tall monitor (anything higher than wide) gets vertical orientation
       default-root-container-orientation = "auto";
 
+      # Gaps between windows (inner-*) and between monitor edges (outer-*).
+      # Possible values:
+      # - Constant:     gaps.outer.top = 8
+      # - Per monitor:  gaps.outer.top = [{ monitor.main = 16 }, { monitfor."some-pattern" = 32 }, 24]
+      #                 In this example, 24 is a default value when there is no match.
+      #                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
+      #                 See https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+      gaps = {
+        inner.horizontal = 8;
+        inner.vertical = 8;
+        outer.top = [
+          { monitor."built-in" = 10; }    # Matches MacBook screen (with the notch)
+          { monitor."main" = 45; }        # Applies to whichever display is currently "main"
+          45                              # Fallback default for all others
+        ];
+        outer.bottom = 5;
+        outer.left = 5;
+        outer.right = 5;
+      };
+
       # ---------
       # Callbacks
       # ---------
@@ -52,19 +72,21 @@
       # See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
       on-focused-monitor-changed = [ "move-mouse monitor-lazy-center" ];
 
-      gaps = {
-        inner.horizontal = 8;
-        inner.vertical = 8;
-        outer.left = 5;
-        outer.bottom = 5;
-        outer.top = [
-          { monitor."built-in" = 10; }
-          { monitor."main" = 50; }
-          50
-        ];
-        outer.right = 5;
+
+
+      # --------
+      # Keyboard
+      # --------
+
+      # Possible values: (qwerty|dvorak)
+      # See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+      key-mapping = {
+        preset = "qwerty";
       };
 
+      # 'main' binding mode declaration
+      # 'main' binding mode must be always presented
+      # See https://nikitabobko.github.io/AeroSpace/guide#binding-modes
       mode.main.binding = {
         alt-h = "focus left";
         alt-j = "focus down";
@@ -92,7 +114,16 @@
         alt-shift-5 = "move-node-to-workspace 5";
         alt-shift-6 = "move-node-to-workspace 6";
 
-        cmd-m = "fullscreen";
+        alt-f = "fullscreen";
+
+        # Resize
+        # See https://nikitabobko.github.io/AeroSpace/commands#resize
+        alt-shift-minus = "resize smart -50";
+        alt-shift-equal = "resize smart +50";
+
+        # App shortcuts
+        alt-t = "exec-and-forget open -a /Applications/Ghostty.app";
+        alt-shift-r = "exec-and-forget /opt/homebrew/bin/sketchybar --reload";
       };
     };
   };
