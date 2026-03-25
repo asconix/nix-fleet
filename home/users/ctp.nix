@@ -6,6 +6,12 @@
   # Home Manager option search
   # https://mipmip.github.io/home-manager-option-search
 
+  # Sketchybar
+  home.file.".config/sketchybar/sketchybarrc" = {
+    source = ../../modules/common/sketchybar/sketchybarrc;
+    executable = true;
+  };
+
   # Zoxide
   programs.zoxide = {
     enable = true;

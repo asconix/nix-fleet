@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+# Clear existing items
+sketchybar --remove '/.*/'
+
+# Set bar appearance
+sketchybar --bar height=32 \
+                 color=0xff1e1e2e \
+                 padding_left=10 \
+                 padding_right=10
+
+# Default item styling
+sketchybar --default \
+  icon.font="Hack Nerd Font:Bold:14.0" \
+  label.font="Hack Nerd Font:Regular:13.0" \
+  icon.color=0xffffffff \
+  label.color=0xffffffff \
+  padding_left=5 \
+  padding_right=5
+
+# Add a simple left item (just text)
+sketchybar --add item hello left \
+           --set hello label="Hello"
+
+# Add clock on the right
+sketchybar --add item clock right \
+           --set clock update_freq=1 \
+                        script="date '+%H:%M:%S'"

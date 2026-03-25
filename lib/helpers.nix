@@ -16,7 +16,7 @@
         ../hosts/common/darwin-common.nix
         ../hosts/common/shell.nix
         ../modules/common/bash/default.nix
-        ../modules/common/sketchybar/default.nix
+        # ../modules/common/sketchybar/default.nix
         customConf
 
         {
