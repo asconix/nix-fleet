@@ -88,6 +88,7 @@ in
       "font-hack-nerd-font"
       "font-jetbrains-mono-nerd-font"
       "font-meslo-lg-nerd-font"
+      "ghostty"
       "google-chrome"
       "handbrake-app"
       "hammerspoon"

@@ -7,6 +7,10 @@
     unstablePkgs = inputs.nixpkgs-unstable.legacyPackages.${system};
     customConfPath = ./../hosts/darwin/${hostname};
     customConf = if builtins.pathExists (customConfPath) then (customConfPath + "/default.nix") else ./../hosts/common/darwin-common-dock.nix;
+    # Dynamically import all modules/common/*/default.nix (all are home-manager modules)
+    commonModules = builtins.map
+      (name: ../modules/common/${name}/default.nix)
+      (builtins.attrNames (builtins.readDir ../modules/common));
   in
     inputs.nix-darwin.lib.darwinSystem {
       specialArgs = { inherit system inputs username unstablePkgs myLibPath; };
@@ -15,8 +19,6 @@
         ../hosts/common/common-packages.nix
         ../hosts/common/darwin-common.nix
         ../hosts/common/shell.nix
-        ../modules/common/bash/default.nix
-        # ../modules/common/sketchybar/default.nix
         customConf
 
         {
@@ -31,7 +33,7 @@
           home-manager.backupFileExtension = "backup";
           home-manager.extraSpecialArgs = { inherit inputs; };
           #home-manager.sharedModules = [ inputs.nixvim.homeManagerModules.nixvim ];
-          home-manager.users.${username} = { imports = [ ./../home/users/${username}.nix ]; };
+          home-manager.users.${username} = { imports = [ ./../home/users/${username}.nix ] ++ commonModules; };
         }
 
         # Homebrew

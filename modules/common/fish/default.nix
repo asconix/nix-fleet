@@ -1,7 +1,4 @@
-{ inputs, outputs, user, stateVersion, myLibPath, lib, pkgs, sources, ... }:
-let
-  libx = import myLibPath { inherit inputs outputs user stateVersion; };
-in
+{ inputs, lib, pkgs, ... }:
 {
   programs.fish = {
     enable = true;
@@ -10,22 +7,22 @@ in
       "set -g SHELL ${pkgs.fish}/bin/fish"
     ]);
 
-    inherit (libx) shellAliases;
+    # inherit (libx) shellAliases;
 
     plugins = map
       (n: {
         name = n;
-        src = sources.${n};
+        src = inputs.${n};
       }) [
-      "fish-fzf"
-      "fish-foreign-env"
-      "zoxide.fish"
+      # "fish-fzf"
+      # "fish-foreign-env"
+      # "zoxide.fish"
     ];
   };
 
   programs.starship = {
     enable = true;
-    package = pkgs.unstable.starship;
+    package = pkgs.starship;
     enableTransience = true;
     enableFishIntegration = true;
     # Configuration written to ~/.config/starship.toml
