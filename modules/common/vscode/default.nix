@@ -1,5 +1,4 @@
-{ ... }:
-hhh
+{ inputs, pkgs, ... }:
 
 {
   programs.vscode = {
@@ -43,4 +42,4 @@ hhh
         ]);
     };
   };
-};
+}

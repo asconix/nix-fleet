@@ -71,13 +71,16 @@ in
       upgrade = true;
     };
     global.autoUpdate = true;
-
-    brews = [
-      "sketchybar"
-    ];
+    
     taps = [
       "felixkratz/formulae"
     ];
+
+    brews = [
+      "borders"
+      "sketchybar"
+    ];
+
     casks = [
       "claude"
       "chatgpt-atlas"
