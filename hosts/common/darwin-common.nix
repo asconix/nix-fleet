@@ -27,6 +27,7 @@ in
 
   environment.systemPackages = with pkgs; [
     # Stable
+    pkgs.htop
     pkgs.just
     pkgs.mas 
     pkgs.meld

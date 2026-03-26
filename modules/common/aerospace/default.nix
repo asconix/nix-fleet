@@ -16,7 +16,11 @@
       # You can use it to add commands that run after AeroSpace startup.
       # 'after-startup-command' is run after 'after-login-command'
       # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-      after-startup-command = "exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0 >/dev/null 2>&1 & disown";
+
+      # JankyBorders https://github.com/FelixKratz/JankyBorders
+      after-startup-command = "exec-and-forget borders >/dev/null 2>&1 & disown";
+      # after-startup-command = "exec-and-forget borders style=round width=5.0 hidpi=off active_color=0xffe1e3e4 inactive_color=0xff494d64 >/dev/null 2>&1 & disown";
+
 
       # -------------------------------------------------------------------------------
       # Normalization
