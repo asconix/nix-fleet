@@ -1,13 +1,26 @@
 #!/usr/bin/env bash
 
+PLUGIN_DIR="$CONFIG_DIR/plugins"
+ITEM_DIR="$CONFIG_DIR/items" 
+
+# Import colors
+source "$CONFIG_DIR/colors.sh"
+
 # Clear existing items
 sketchybar --remove '/.*/'
 
-# Set bar appearance
-sketchybar --bar height=32 \
-                 color=0xff1e1e2e \
-                 padding_left=10 \
-                 padding_right=10
+##### Bar Appearance #####
+# Configuring the general appearance of the bar.
+# These are only some of the options available. For all options see:
+# https://felixkratz.github.io/SketchyBar/config/bar
+# If you are looking for other colors, see the color picker:
+# https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
+sketchybar --bar position=bottom \
+                 height=40 \
+                 radius=30 \
+                 color=$BAR_COLOR \
+                 padding_left=30 \
+                 padding_right=100
 
 # Default item styling
 sketchybar --default \
@@ -20,7 +33,13 @@ sketchybar --default \
 
 # Add a simple left item (just text)
 sketchybar --add item hello left \
-           --set hello label="Hello"
+           --set hello label="Helloo"
+
+# Show the active AeroSpace binding mode so temporary modes are obvious.
+sketchybar --add item aerospace_mode left \
+           --set aerospace_mode \
+                icon="MODE" \
+                label="MAINNN"
 
 # Add clock on the right
 sketchybar --add item clock right \
