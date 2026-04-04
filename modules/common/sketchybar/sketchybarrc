@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+CONFIG_DIR="$HOME/.config/sketchybar"
 PLUGIN_DIR="$CONFIG_DIR/plugins"
 ITEM_DIR="$CONFIG_DIR/items" 
 
@@ -18,7 +19,7 @@ sketchybar --remove '/.*/'
 sketchybar --bar position=bottom \
                  height=40 \
                  radius=30 \
-                 color=$BAR_COLOR \
+                 #color=$BAR_COLOR \
                  padding_left=30 \
                  padding_right=100
 
@@ -30,8 +31,8 @@ sketchybar --bar position=bottom \
 default=(
   padding_left=5
   padding_right=5
-  icon.font="Hack Nerd Font:Bold:17.0"
-  label.font="SF Pro:Semibold:17.0"
+  icon.font="Hack Nerd Font:Bold:13.0"
+  label.font="Hack Nerd Font:Normal:13.0"
   icon.color=$WHITE
   label.color=$WHITE
   icon.padding_left=4
@@ -46,6 +47,8 @@ sketchybar --default "${default[@]}"
 
 # Add the aerospace_workspace_change event we specified in aerospace.toml
 sketchybar --add event aerospace_workspace_change
+
+echo "VOR WORKSPACES" >> /tmp/sketchybar.log
 
 # Add workspaces for all monitors
 for monitor in $(aerospace list-monitors --format "%{monitor-appkit-nsscreen-screens-id}"); do
@@ -79,27 +82,56 @@ for monitor in $(aerospace list-monitors --format "%{monitor-appkit-nsscreen-scr
       label.shadow.color=0xA0000000 \
       label.shadow.distance=4 \
       click_script="aerospace workspace $sid" \
-      script="$CONFIG_DIR/plugins/aerospace.sh $sid"
+      script="$PLUGIN_DIR/aerospace.sh $sid"
   done
 done
 
+# Load icons on startup for all monitors
+for monitor in $(aerospace list-monitors --format "%{monitor-appkit-nsscreen-screens-id}"); do
+  for sid in $(aerospace list-workspaces --monitor "$monitor" --empty no); do
+    apps=$(aerospace list-windows --workspace "$sid" | awk -F'|' '{gsub(/^ *| *$/, "", $2); print $2}')
 
+    sketchybar --set space.$sid drawing=on
 
+    icon_strip=" "
+    if [ "${apps}" != "" ]; then
+      while read -r app; do
+        icon_strip+=" $($PLUGIN_DIR/icon_map_fn.sh "$app")"
+      done <<<"${apps}"
+    else
+      icon_strip=""
+    fi
+    sketchybar --set space.$sid label="$icon_strip"
+  done
+done
 
+# Front app
+source "$ITEM_DIR/front_app.sh"
 
+##### Adding Right Items #####
+# In the same way as the left items we can add items to the right side.
+# Additional position (e.g. center) are available, see:
+# https://felixkratz.github.io/SketchyBar/config/items#adding-items-to-sketchybar
 
+# Some items refresh on a fixed cycle, e.g. the clock runs its script once
+# every 10s. Other gititems respond to events they subscribe to, e.g. the
+# volume.sh script is only executed once an actual change in system audio
+# volume is registered. More info about the event system can be found here:
+# https://felixkratz.github.io/SketchyBar/config/events
 
-# Add a simple left item (just text)
-sketchybar --add item hello left \
-           --set hello label="Helloo"
-
-# Show the active AeroSpace binding mode so temporary modes are obvious.
-sketchybar --add item aerospace_mode left \
-           --set aerospace_mode \
-                icon="MODE" \
-                label="MAINNN"
-
-# Add clock on the right
 sketchybar --add item clock right \
-           --set clock update_freq=1 \
-                        script="date '+%H:%M:%S'"
+  --set clock update_freq=10 script="$PLUGIN_DIR/clock.sh" \
+  --add item volume right \
+  --set volume script="$PLUGIN_DIR/volume.sh" \
+  --subscribe volume volume_change \
+  --add item battery right \
+  --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+  --subscribe battery system_woke power_source_change \
+  --add item swap e \
+  icon="" \
+  label.font="Hack Nerd Font:Italic:13.0" \
+  icon.color=0x44FFFFFF \
+  label.color=0x44FFFFFF
+
+##### Force all scripts to run the first time (never do this in a script) #####
+sketchybar --update

@@ -14,17 +14,29 @@
         }
       ];
 
+      # 0l =>
+
+      # Config file $HOME/Library/Application Support/Code/User/settings.json
       userSettings = {
         # This property will be used to prevent generating settings.json:
         # https://code.visualstudio.com/docs/getstarted/settings#_settingsjson
         "editor.formatOnSave" = false;
+        "files.associations" = {
+          "*.nix" = "nix";
+        };
         # Allow VS Code to use the system's trusted SSL certificates
         "http.systemCertificatesNode" = true;
+        # Font settings for editor
+        "editor.fontFamily" = "'Hack Nerd Font', 'FiraCode Nerd Font', monospace";
+        "editor.fontLigatures" = true;
+        # Font settings for terminal
+        "terminal.integrated.fontFamily" = "'Hack Nerd Font Mono', 'FiraCode Nerd Font Mono'";
       };
 
       extensions = 
         (with pkgs.vscode-extensions; [
           aaron-bond.better-comments
+          bbenoist.nix
           eamodio.gitlens
           esbenp.prettier-vscode
           johnpapa.vscode-peacock
@@ -38,7 +50,6 @@
           dracula-theme.theme-dracula
           google.geminicodeassist
           openai.chatgpt
-          #Google.gemini-cli-vscode-ide-companion
         ]);
     };
   };

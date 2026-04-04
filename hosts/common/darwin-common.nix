@@ -44,6 +44,7 @@ in
     pkgs.nerd-fonts.fira-mono
     pkgs.nerd-fonts.hack
     pkgs.nerd-fonts.jetbrains-mono
+    pkgs.sketchybar-app-font
   ];
 
   # Pins to stable as unstable updates very often
@@ -51,10 +52,6 @@ in
     n.to = {
       type = "path";
       path = inputs.nixpkgs;
-    };
-    u.to = {
-      type = "path";
-      path = inputs.nixpkgs-unstable;
     };
   };
 
@@ -87,11 +84,11 @@ in
       "chatgpt-atlas"
       "discord"
       "firefox"
-      "font-fira-code"
-      "font-fira-code-nerd-font"
+      # "font-fira-code"
+      # "font-fira-code-nerd-font"
       "font-fira-mono-for-powerline"
-      "font-hack-nerd-font"
-      "font-jetbrains-mono-nerd-font"
+      # "font-hack-nerd-font"
+      # "font-jetbrains-mono-nerd-font"
       "font-meslo-lg-nerd-font"
       "ghostty"
       "google-chrome"

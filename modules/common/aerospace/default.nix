@@ -56,9 +56,7 @@
       # even when they are invisible.
       # This config version is only available since 'config-version = 2'
       # Fallback value (if you omit the key): persistent-workspaces = []
-      persistent-workspaces = ["1" "2" "3" "4" "5" "6" "7" "8" "9" "A" "B"
-                              "C" "D" "E" "F" "G" "I" "M" "N" "O" "P" "Q"
-                              "R" "S" "T" "U" "V" "W" "X" "Y" "Z"];
+      persistent-workspaces = ["1" "2" "3" "4" "5" "6" "7" "8" "9"];
 
       # Gaps between windows (inner-*) and between monitor edges (outer-*).
       # Possible values:
@@ -162,6 +160,7 @@
         alt-shift-5 = "move-node-to-workspace 5";
         alt-shift-6 = "move-node-to-workspace 6";
 
+        # Utilities
         alt-f = "fullscreen";
         alt-shift-f = "macos-native-fullscreen";
 
