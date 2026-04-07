@@ -77,6 +77,7 @@ in
     brews = [
       "borders"
       "sketchybar"
+      "tmuxai"
     ];
 
     casks = [

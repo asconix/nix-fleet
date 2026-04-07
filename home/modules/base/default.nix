@@ -10,5 +10,6 @@
     fontconfig
     git
     ripgrep
+    tmux
   ];
 }
