@@ -1,0 +1,7 @@
+[general]
+hotkey = "cmd+space"
+
+[[smartlinks]]
+name = "Google"
+keyword = "g"
+url = "https://www.google.com/search?q={query}"
