@@ -4,11 +4,25 @@
   programs.tmux = {
     enable = true;
 
+    # Plugins
+    plugins = with pkgs.tmuxPlugins; [
+      sensible
+      yank
+      {
+	    plugin = dracula;
+		extraConfig = ''
+		  set -g @dracula-show-battery false
+		  set -g @dracula-show-powerline true
+		  set -g @dracula-refresh-rate 10
+		'';
+	  }
+    ];
+
     # Base index for windows and panes
-    baseIndex = 1;
+    baseIndex = 0;
 
     # Use 24 hour clock
-    clock24 = true;
+    clock24 = false;
 
     # Disable confirmation prompt before killing a pane or window
     disableConfirmationPrompt = true;
@@ -33,15 +47,13 @@
     extraConfig = ''
       unbind C-b
       bind C-a send-prefix
-
+      set -g status-bg purple
       set -g default-terminal "screen-256color"
       set -g escape-time 10
-
-      # Renumber windows (sequential index)
-      set -g renumber-windows on
-
-      # 
+      set -g renumber-windows off
+      set -g status-right " "
       set -g set-clipboard on
+      set -g @plugin 'dracula/tmux'
     '';
   };
 }

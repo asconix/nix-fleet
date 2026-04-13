@@ -1,5 +1,11 @@
 [general]
-hotkey = "cmd+space"
+launch_at_login = true
+show_in_menu_bar = true
+
+[hotkeys]
+# Spotlight replacement
+fuzzy = "cmd+space"
+
 
 [[smartlinks]]
 name = "Google"

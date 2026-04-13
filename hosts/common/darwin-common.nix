@@ -96,6 +96,7 @@ in
       "handbrake-app"
       "hammerspoon"
       "istat-menus"
+      "leader-key"
       "qbittorrent"
       "signal"
       "slack"
