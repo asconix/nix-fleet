@@ -20,7 +20,7 @@
         # https://code.visualstudio.com/docs/getstarted/settings#_settingsjson
         "editor.formatOnSave" = false;
 
-        "workbench.colorTheme" = "Dracula+";
+        "workbench.colorTheme" = "One Dark Pro";
         
         "files.associations" = {
           "*.nix" = "nix";
@@ -43,25 +43,25 @@
           johnpapa.vscode-peacock
           pkief.material-icon-theme
           ritwickdey.liveserver
-          jdinhlife.gruvbox
+          zhuangtongfa.material-theme
         ])
         ++
-        (with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
+        (with inputs.nix-vscode-extensions.extensions.${pkgs.stdenv.hostPlatform.system}.vscode-marketplace; [
           elixir-lsp.elixir-ls
           jnoortheen.nix-ide
           google.geminicodeassist
           openai.chatgpt
-        ])
-        ++ [
-          (pkgs.vscode-utils.buildVscodeExtension {
-            pname = "dracula-pro";
-            version = "2.2.2";
-            vscodeExtUniqueId = "dracula.dracula-pro";
-            vscodeExtPublisher = "dracula";
-            vscodeExtName = "dracula-pro";
-            src = ../../../../assets/themes/vscode/dracula-pro.vsix;
-          })
-        ];
+        ]);
+        # ++ [
+        #   (pkgs.vscode-utils.buildVscodeExtension {
+        #     pname = "dracula-pro";
+        #     version = "2.2.2";
+        #     vscodeExtUniqueId = "dracula.dracula-pro";
+        #     vscodeExtPublisher = "dracula";
+        #     vscodeExtName = "dracula-pro";
+        #     src = ../../../assets/themes/vscode/dracula-pro.vsix;
+        #   })
+        # ];
     };
   };
 }
