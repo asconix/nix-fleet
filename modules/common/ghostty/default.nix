@@ -3,7 +3,7 @@
 {
   home.file.".config/ghostty/config" = {
     text = ''
-      theme = "Dracula+"
+      theme = "Gruvbox Dark"
       font-family = "JetBrains Mono"
       font-size = 12
       window-padding-x = 8

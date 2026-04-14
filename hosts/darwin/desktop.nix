@@ -2,7 +2,7 @@
 
 {
   system.activationScripts.wallpaper.text = ''
-    WALLPAPER="${./assets/wallpapers/dracula-pro/desktop-2560x1600.png}"
+    WALLPAPER="${./assets/wallpapers/dracula-pro/desktop-5120x2880.png}"
 
     osascript <<EOF
     tell application "System Events"

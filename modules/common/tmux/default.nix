@@ -9,17 +9,36 @@
       sensible
       yank
       {
-	    plugin = dracula;
-		extraConfig = ''
-		  set -g @dracula-show-battery false
-		  set -g @dracula-show-powerline true
-		  set -g @dracula-refresh-rate 10
-		'';
-	  }
+	      plugin = gruvbox;
+		    extraConfig = ''
+set -g @plugin 'z3z1ma/tmux-gruvbox'
+set -g @plugin 'tmux-plugins/tpm'
+set -g @gruvbox_flavour 'dark'
+set -g @gruvbox_window_left_separator ''
+set -g @gruvbox_window_right_separator ' '
+set -g @gruvbox_window_middle_separator ' █'
+set -g @gruvbox_window_number_position 'right'
+
+set -g @gruvbox_window_default_fill 'number'
+set -g @gruvbox_window_default_text '#W'
+
+set -g @gruvbox_window_current_fill 'number' 
+set -g @gruvbox_window_current_text "#W"
+
+set -g @gruvbox_status_modules_right "directory user host session"
+set -g @gruvbox_status_left_separator  " "
+set -g @gruvbox_status_right_separator ""
+set -g @gruvbox_status_right_separator_inverse 'no'
+set -g @gruvbox_status_fill 'icon'
+set -g @gruvbox_status_connect_separator "no"
+
+set -g @gruvbox_directory_text "#{pane_current_path}"
+'';
+  	  }
     ];
 
     # Base index for windows and panes
-    baseIndex = 0;
+    baseIndex = 1;
 
     # Use 24 hour clock
     clock24 = false;
@@ -47,13 +66,11 @@
     extraConfig = ''
       unbind C-b
       bind C-a send-prefix
-      set -g status-bg purple
       set -g default-terminal "screen-256color"
       set -g escape-time 10
       set -g renumber-windows off
-      set -g status-right " "
+      # set -g status-right " "
       set -g set-clipboard on
-      set -g @plugin 'dracula/tmux'
     '';
   };
 }

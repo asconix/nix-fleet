@@ -14,13 +14,14 @@
         }
       ];
 
-      # 0l =>
-
       # Config file $HOME/Library/Application Support/Code/User/settings.json
       userSettings = {
         # This property will be used to prevent generating settings.json:
         # https://code.visualstudio.com/docs/getstarted/settings#_settingsjson
         "editor.formatOnSave" = false;
+
+        "workbench.colorTheme" = "Dracula+";
+        
         "files.associations" = {
           "*.nix" = "nix";
         };
@@ -42,15 +43,25 @@
           johnpapa.vscode-peacock
           pkief.material-icon-theme
           ritwickdey.liveserver
+          jdinhlife.gruvbox
         ])
         ++
         (with inputs.nix-vscode-extensions.extensions.${pkgs.system}.vscode-marketplace; [
           elixir-lsp.elixir-ls
           jnoortheen.nix-ide
-          dracula-theme.theme-dracula
           google.geminicodeassist
           openai.chatgpt
-        ]);
+        ])
+        ++ [
+          (pkgs.vscode-utils.buildVscodeExtension {
+            pname = "dracula-pro";
+            version = "2.2.2";
+            vscodeExtUniqueId = "dracula.dracula-pro";
+            vscodeExtPublisher = "dracula";
+            vscodeExtName = "dracula-pro";
+            src = ../../../../assets/themes/vscode/dracula-pro.vsix;
+          })
+        ];
     };
   };
 }

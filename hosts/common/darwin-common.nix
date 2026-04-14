@@ -303,6 +303,11 @@ in
         DisablePrintPreview = true;
         PMPrintingExpandedStateForPrint2 = true;
       };
-  };
 
+      # Leader Key
+      "com.brnbw.Leader-Key" = {
+        KeyboardShortcuts_navigate = "{\"carbonKeyCode\":49,\"carbonModifiers\":1048576}";
+        theme = "cheater";
+      };
+  };
 }
