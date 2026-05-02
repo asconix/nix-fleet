@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 
 let
-  emacs = pkgs.emacs-git;
+  emacs = pkgs.emacs;
   emacsBin = "${emacs}/bin/emacs";
   emacsDir = "${config.home.homeDirectory}/.emacs.d";
 in

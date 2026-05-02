@@ -7,4 +7,7 @@
 
   # Local overlays
   (import ./nodejs.nix)
+  (final: prev: {
+    mise-prebuilt = prev.callPackage ../pkgs/mise-prebuilt.nix {};
+  })
 ]

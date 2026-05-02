@@ -30,7 +30,9 @@ in
     fontconfig
     git
     ripgrep
-    tuna
+    # tuna
     tmux
+    emacs
+    mise-prebuilt
   ];
 }

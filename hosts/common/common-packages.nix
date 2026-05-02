@@ -9,6 +9,7 @@ in
 
   environment.systemPackages = with pkgs; [
     bitwarden-cli
+    # erlang
     git-crypt
     git-lfs
     jq

@@ -27,6 +27,7 @@ in
 
   environment.systemPackages = with pkgs; [
     # Stable
+    pkgs.btop
     pkgs.htop
     pkgs.just
     pkgs.mas 
@@ -84,7 +85,6 @@ in
       "claude"
       "chatgpt-atlas"
       "discord"
-      "firefox"
       # "font-fira-code"
       # "font-fira-code-nerd-font"
       "font-fira-mono-for-powerline"
@@ -310,4 +310,9 @@ in
         theme = "cheater";
       };
   };
+
+  system.activationScripts.disableSpotlightShortcut.text = ''
+  plutil -replace AppleSymbolicHotKeys.64.enabled -bool false ~/Library/Preferences/com.apple.symbolichotkeys.plist
+  killall SystemUIServer || true
+'';
 }
