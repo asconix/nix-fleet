@@ -9,8 +9,7 @@
 
   # Plist file is in ~/Library/Preferences/com.brnbw.Tuna.plist
   # defaults read com.brnbw.Tuna.plist
-  home.activation.setTunaCLIEnabled = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-    /usr/bin/defaults write com.brnbw.Tuna.plist AppPresentationMode -string "statusBar"
-    /usr/bin/defaults write com.brnbw.Tuna CLIEnabled -bool true
+  home.activation.addFavorites = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    mysides insert ctp file:///Users/ctp
   '';
 }

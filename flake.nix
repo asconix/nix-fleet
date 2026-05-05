@@ -63,7 +63,7 @@
     with inputs;
     let
       inherit (self) outputs;
-      stateVersion = "25.05";
+      stateVersion = "26.05";
       libx = import ./lib { inherit inputs outputs stateVersion; };
     in {
       darwinConfigurations = {

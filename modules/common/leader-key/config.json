@@ -1,7 +1,10 @@
 {
     "type": "group",
     "actions": [
-        { "key": "t", "type": "application", "value": "/System/Applications/Utilities/Terminal.app" },
+        { "key": "t", 
+            "type": "application", 
+            "value": "/System/Applications/Utilities/Terminal.app"
+        },
         {
             "key": "o",
             "type": "group",

@@ -7,7 +7,7 @@ stdenv.mkDerivation rec {
   src = fetchurl {
     url = "https://github.com/jdx/mise/releases/download/v${version}/mise-v${version}-macos-arm64.tar.gz";
     # Replace with the correct hash after first build attempt
-    sha256 = lib.fakeSha256;
+    sha256 = "sha256-Pz5VhKnVY7YtB+BCIQC+Wp9/VvD8VVXU8KF8NmF1cQc=";
   };
 
   dontUnpack = false;

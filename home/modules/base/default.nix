@@ -3,19 +3,17 @@
 let
   tuna = pkgs.stdenvNoCC.mkDerivation {
     pname = "tuna";
-    version = "0.56";
+    version = "0.65";
     src = pkgs.fetchurl {
       url = "https://tunaformac.com/download/latest";
-      hash = "sha256-bVjPQfQj5yM7Sw3hqbN/t0WQw8n70yvZQRC1oeRTzFg=";
+      hash = "sha256-7JMq/Qo125GXOvTd4C/zcWarWLruCnvd6X6NXDjxJpo=";
     };
     dontUnpack = true;
     nativeBuildInputs = [ pkgs.unzip ];
     installPhase = ''
-      mkdir source
-      cd source
       unzip "$src"
       mkdir -p "$out/Applications"
-      cp -R "$src" "$out/Applications/Tuna.app"
+      cp -R Tuna.app "$out/Applications/"
     '';
   };
 in
@@ -30,9 +28,9 @@ in
     fontconfig
     git
     ripgrep
-    # tuna
+    tuna
     tmux
-    emacs
+    # emacs
     mise-prebuilt
   ];
 }

@@ -97,6 +97,7 @@ in
       "hammerspoon"
       "istat-menus"
       "leader-key"
+      "mysides"
       "qbittorrent"
       "signal"
       "slack"
