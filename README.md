@@ -21,7 +21,7 @@ It uses Nix flakes to define reproducible system configurations, shared packages
 
     * NixOS system configurations for Linux machines
     * nix-darwin configurations for macOS hosts
-    • FreeBSD system and user provisioning via `nixpkgs` and `home-manager`
+    * FreeBSD system and user provisioning via `nixpkgs` and `home-manager`
 
 * Declarative system management
 
